@@ -31,9 +31,12 @@ The app keeps track of your payment history to help you be more accountable abou
 2. Improving the functionality and features of EMI calculator.
 3. Create a local wallet/card to avoid using bank for all transitions as an aspect of revenue generation.
 4. Including more features for more accountability in personal finance.
-5.   
+   
 
 ***
-
+# Working
+1. First git clone the project
+2. npm install 
+3. npm run start
 
 
