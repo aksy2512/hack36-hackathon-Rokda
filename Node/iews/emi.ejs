@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Loan Calculator</title>
+
+	<style>
+		body {
+			background-color: yellow;
+			font-family: 'Trebuchet MS';
+		}
+		
+		h1 {
+			font-size: 35px;
+		}
+		
+		h1 {
+			font-size: 21px;
+			margin-top: 20px;
+		}
+		
+		.calculator {
+			width: 400px;
+			height: 450px;
+			background-color: black;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			padding: 20px 0px 0px 100px;
+			border-radius: 50px;
+			color: white;
+		}
+		
+		input {
+			padding: 7px;
+			width: 70%;
+			margin-top: 7px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="calculator">
+		<h1>Loan Calculator</h1>
+
+		<!-- Calling Calculate function defined in app.js -->
+		<p>Amount (₹) 	:
+			<input id="amount" type="number">
+		</p>
+
+		<p>Interest Rate :
+			<input id="rate" type="number">
+		</p>
+
+		<p>Months to Pay :
+			<input id="months" type="number">
+		</p>
+        <p><Button onclick="Calculate()">Calculate</Button></p>
+
+		<h2 id="total"></h2>
+	</div>
+
+	<script src="./js/index.js"></script>
+</body>
+
+</html>

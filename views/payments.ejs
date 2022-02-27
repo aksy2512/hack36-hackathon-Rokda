@@ -1,0 +1,434 @@
+<%- include("./components/header") %>
+
+<div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+
+    <div class="bg-gray-800 pt-3">
+        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+            <h1 class="font-bold pl-2">Payments</h1>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6 showHideBtn">
+            <!--Metric Card-->
+            <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
+                <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                        <div style="width:75px" class="text-center rounded-full p-5 bg-green-600"><i  class="fa fa-indian-rupee-sign fa-2x fa-inverse"> </i></div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                        <p class="font-bold text-3xl">Add Money</p>
+                        <h2 class="font-bold uppercase text-gray-600">to Wallet</h2>
+                    </div>
+                </div>
+            </div>
+            <!--/Metric Card-->
+        </div>
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6 showHideBtn">
+            <!--Metric Card-->
+            <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+                <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                        <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-wallet fa-2x fa-inverse"></i></div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                        <p class="font-bold text-3xl">Check Balance</p>
+                        <h2 class="font-bold uppercase text-gray-600">Available in Wallet</h2>
+                    </div>
+                </div>
+            </div>
+            <!--/Metric Card-->
+        </div>
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6 showHideBtn">
+            <!--Metric Card-->
+            <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
+                <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                        <div class="rounded-full p-5 bg-yellow-600"><i class="fas fa-qrcode fa-2x fa-inverse"></i></div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                        <p class="font-bold text-3xl">UPI Payement</p>
+                        <h2 class="font-bold uppercase text-gray-600">Send money to UPI</h2>
+                    </div>
+                </div>
+            </div>
+            <!--/Metric Card-->
+        </div>
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6 showHideBtn">
+            <!--Metric Card-->
+            <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
+                <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                        <div class="rounded-full p-5 bg-blue-600"><i class="fas fa-building-columns fa-2x fa-inverse"></i></div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                        <p class="font-bold text-3xl">Bank Transfer</p>
+                        <h2 class="font-bold uppercase text-gray-600">Send Money Directly to Bank</h2>
+                    </div>
+                </div>
+            </div>
+            <!--/Metric Card-->
+        </div>
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6 showHideBtn">
+            <!--Metric Card-->
+            <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
+                <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                        <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-arrow-trend-up fa-2x fa-inverse"></i></div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                        <p class="font-bold text-3xl">Invest</p>
+                        <h2 class="font-bold uppercase text-gray-600">Add Your Investments</h2>
+                    </div>
+                </div>
+            </div>
+            <!--/Metric Card-->
+        </div>
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6 showHideBtn">
+            <!--Metric Card-->
+            <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
+                <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                        <div class="rounded-full p-5 bg-red-600"><i class="fas fa-arrow-right-arrow-left fa-2x fa-inverse"></i></div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                        <p class="font-bold text-3xl">Transactions</p>
+                        <h2 class="font-bold uppercase text-gray-600">check your previous transactions</h2>
+                    </div>
+                </div>
+            </div>
+            <!--/Metric Card-->
+        </div>
+         
+
+
+    </div>
+
+    <h1 class="text-center bg-blue-500 pb-4" style="font-size: 30px; color: rgb(237, 238, 224);"><%= message %></h1>
+
+
+    <div class="min-h-screen flex justify-center items-center bg-blue-500  showHide" id ="addmoney">
+        <div class=" card rounded-lg h-auto w-3/4 bg-white">
+            <div class="flex h-full w-full ">
+                <div class="left_side truncate relative rounded-l-lg h-auto w-full truncate"> <img class="h-full w-full" src="https://imgur.com/cOwXXFq.jpg">
+                    <div class="h-48 w-72 opacity-70 rounded-lg bg-blue-300 absolute top-28 left-8 ">
+                        <div class="p-2 mt-3 text-black font-semibold">
+                            <p>Card Number</p>
+                            <p class="border-b-2 text-white shown_number">0000 0000 0000 0000</p>
+                        </div>
+                        <div class="flex gap-3 mt-3">
+                            <div class="p-2 mt-2 text-black font-semibold">
+                                <p>Expiry Date</p>
+                                <p class="border-b-2 text-white shown_expiry">mm/yyyy</p>
+                            </div>
+                            <div class="p-2 mt-2 text-black font-semibold">
+                                <p>CVV</p>
+                                <p class="border-b-2 text-white shown_cvv">000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 right_side truncate h-auto w-full bg-gray-300 rounded-r-lg">
+                    <p class="mt-3 text-xl font-semibold">Add money</p>
+                    <div class="mt-5 relative"> <input class="input_number h-12 w-full border border-white transition-all rounded-lg px-2 outline-none focus:border-blue-900" type="text" placeholder="0000 0000 0000 0000" data-slots="0" data-accept="\d" size="19" onkeyup="Number(this.value)"> <label class="text-xs absolute -top-4 left-0">Card Number</label> </div>
+                    <div class="mt-7 w-full flex gap-3">
+                        <div class=" relative w-full"> <input class="input_expiry h-12 w-full border border-white transition-all rounded-lg px-2 outline-none focus:border-blue-900" placeholder="mm/yyyy" data-slots="my" type="text" onkeyup="Expiry(this.value)"> <label class="text-xs absolute -top-4 left-0">Expiry Date</label> </div>
+                        <div class=" relative w-full"> <input class="input_cvv h-12 w-full border border-white transition-all rounded-lg px-2 outline-none focus:border-blue-900" type="text" placeholder="000" data-slots="0" data-accept="\d" size="3" onkeyup="Cvv(this.value)"> <label class="text-xs absolute -top-4 left-0">CVV</label> </div>
+                    </div>
+                    <form action="/addMoney" method="POST">
+                        <div class="mt-7 relative"> <input name="name" placeholder="FirstName SecondName" class="h-12 w-full border border-white transition-all rounded-lg px-2 outline-none focus:border-blue-900" type="text"> <label class="text-xs absolute -top-4 left-0" onkeyup="Name(this.value)">Name on Card</label> </div>
+                        <p class="text-sm mt-2">Amount</p><input name="amount" class="h-12 w-full border border-white transition-all rounded-lg px-2 outline-none focus:border-blue-900" type="text" placeholder="Amount">
+                        <div class="mb-5"> <button class="pay_now mt-4 outline-none rounded-lg text-white h-12 w-full bg-green-500 text-sm cursor-pointer transition-all hover:bg-green-800"><i class="fa fa-lock mr-1 "></i>Add</button> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+       <!-- Balance -->
+    <div class="min-h-screen flex justify-center mt-4 bg-blue-500  showHide" >
+        <div>
+            <h1 class="text-center bg-blue-500" style="font-size: 30px; color: rgb(237, 238, 224);">Your Current Balance is ₹<%= user.Balance %></h1>
+        </div>        
+    </div>
+ 
+       <!-- For Paying -->
+    <div class="min-h-screen flex justify-center  bg-blue-500  showHide" >
+        <div class="UPI">
+        <form action = "/upiTransfer" method = "POST"style="display: flex; flex-direction: column; justify-content: space-between; height: 100px;">
+            <h1 class="mb-10 mt-10" style="font-size: 28px; color: wheat;">Enter details to pay</h1>
+            <div>
+                <label for="upi">UPI ID</label>
+                <input type="text" name="upi" placeholder="999999999@ybl" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+            </div>
+            <div>
+                <label for="to">Name of reciepent</label>
+                <input type="text" id="lname" name="name" placeholder="Enter name of recipient" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+            </div>
+           <div>
+                <label for="lname">Message</label>
+                <input type="text" id="lname" name="lastname" placeholder="What is this money for?" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+           </div>
+
+           <div>
+            <label for="category">Category</label>
+            <select name="category" style="width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;">
+                <option value="Entertainment">Entertainment</option>
+                <option value="Food">Food</option>
+                <option value="Housing">Housing</option>
+                <option value = "Transportation">Transportation</option>
+                <option value = "Insurance">Personal Insurance</option>
+                <option value = "Healthcare">Health</option>
+                <option value = "Invest">Invest</option>
+            </select>
+            <div>
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" name="amount" placeholder="Enter Amount" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+           </div>
+            <input type="submit" value="Submit" style = "width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;">
+           </div>
+           
+        </form>
+        </div>
+        
+    </div>
+       <!-- For Bank Transfer -->
+       <div class="min-h-screen flex justify-center  bg-blue-500  showHide" >
+        <div class="UPI">
+
+        <form action = "/bankTransfer" method="POST" style="display: flex; flex-direction: column; justify-content: space-between; height: 100px;">
+            <h1 class="mb-10 mt-10" style="font-size: 28px; color: wheat;">Enter details to transfer money</h1>
+            
+            <div>
+                <label for="category">Select Bank</label>
+                <select name="banks" style="width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+                    <option value="ICICI Bank">ICICI Bank</option>
+                    <option value="State Bank of India">State Bank of India</option>
+                    <option value="Punjab National Bank">Punjab National Bank</option>
+                    <option value = "HDFC Bank">HDFC Bank</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="account">Account Number</label>
+                <input type="text" name="accountNumber" placeholder="Account Number" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+            </div>
+        
+           <div>
+                <label for="ifsc">IFSC Code</label>
+                <input type="text" id="lname" name="ifsc" placeholder="Enter IFSC code" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+           </div>
+
+           <div>
+                <label for="to">Name of reciepent</label>
+                <input type="text" id="lname" name="name" placeholder="Enter name of recipient" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+            </div>
+
+           <div>
+            <label for="category">Category</label>
+            <select name="category" style="width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;">
+                <option value="Entertainment">Entertainment</option>
+                <option value="Food">Food</option>
+                <option value="Housing">Housing</option>
+                <option value = "Transportation">Transportation</option>
+                <option value = "Insurance">Personal Insurance</option>
+                <option value = "Healthcare">Health</option>
+                <option value = "Invest">Investment</option>
+            </select>
+            <div>
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" name="amount" placeholder="Enter Amount" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+           </div>
+           </div>
+            <input type="submit" value="Submit" style = "width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;">
+        </form>
+        </div>
+        
+    </div>
+    <!-- For Invest -->
+    <div class="min-h-screen flex justify-center  bg-blue-500  showHide" >
+        <div class="UPI">
+
+        <form action = "/investment" method="POST" style="display: flex; flex-direction: column; justify-content: space-between; height: 100px;">
+            <h1 class="mb-10 mt-10" style="font-size: 28px; color: wheat;">Enter details to transfer money</h1>
+            
+           <div>
+            <label for="category">Category</label>
+            <select name="category" style="width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;">
+                <option value="Entertainment">Crypto</option>
+                <option value="Food">Stock</option>
+                <option value="Housing">Gold</option>
+                <option value = "Transportation">Real estate</option>
+                <option value = "Insurance">Other</option>
+            </select>
+            <div>
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" name="amount" placeholder="Enter Amount" style = "width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;">
+           </div>
+
+           <input type="submit" value="Submit" style = "width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;">
+
+        </form>
+        </div>
+        
+    </div>
+       <!-- For Transactions -->
+    <div class="flex justify-center  showHide" >
+        <h1>Transactions</h1>
+        <table class = "" style="width:90%">
+            <tr>
+              <th>Transaction Id</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Transaction type</th>
+              <th>Amount</th>
+              <th>Date & Time</th>
+            </tr>
+            <% Transactions.forEach((transaction)=>{ %> 
+            <tr>
+                <td><%=transaction._id%></td>
+                <td><%= transaction.from %></td>
+                <td><%=transaction.to %></td>
+                <td><%= transaction.type %></td>
+                <td>₹<%= transaction.amount %></td>
+                <td><%= transaction.createdAt %></td>
+            </tr>
+            <% }) %>
+              
+          </table>
+    </div>
+</div>
+
+
+
+<script>
+
+    showHideBtn = document.querySelectorAll(".showHideBtn");
+
+    showHide = document.querySelectorAll(".showHide");
+    showHide.forEach(element => {
+        element.style.display="none";
+    });
+    const showHideOperate = (i) => {
+        showHide.forEach(element => {
+            element.style.display="none";
+        });
+        showHide[i].style.display="flex";
+        console.log(i)
+    }
+    for (let index = 0; index < showHideBtn.length; index++) {
+        const element = showHideBtn[index];
+        element.addEventListener('click', ()=>{
+            showHideOperate(index);
+        })
+    }
+
+    showHideBtn[5].addEventListener('click', async ()=>{
+        var documentHTML = document.documentElement.innerHTML;
+        var x = showHide[5].innerHTML;
+        document.documentElement.innerHTML=x;
+        await window.print();
+        window.innerHTML = documentHTML;
+    })
+</script>
+
+
+<%- include("./components/footer") %>

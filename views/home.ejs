@@ -1,0 +1,230 @@
+<%- include("./components/header") %>
+
+
+<% if(!user){ %>
+    <div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+        <%- include("./components/unlogged") %>
+    </div>
+<% } else {%>
+
+
+<section>
+    <div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+
+        <div class="bg-gray-800 pt-3">
+            <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+                <h1 class="font-bold pl-2">Analytics</h1>
+            </div>
+        </div>
+
+ 
+
+        <div class="flex flex-row flex-wrap flex-grow mt-2">
+
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+            <!--Graph Card-->
+            <div class="bg-pink border-transparent rounded-lg shadow-xl">
+                <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                    <h class="font-bold uppercase text-gray-600">Personal Finance</h>
+                </div>
+                <div class="p-5">
+                    <hr>
+                    <div class="inline-flex">
+                        <button class="bg-blue-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded-l" id ="bar">
+                            Bar
+                        </button>
+                        <button class="bg-blue-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded-r" id = "line">
+                            Line
+                        </button>
+                    </div>
+                    
+                    <canvas id="chartjs-7" class="chartjs" width=100 height=100></canvas>
+                    <script>
+                        var investings = <%= expenses.Invest %>
+                        var spending = <%= expenses.Entertainment + expenses.Food + expenses.Healthcare + expenses.Housing + expenses.Insurance  %>
+                        var savings = <%= user.Balance %>
+                        var moneyAdded = savings + investings + spending;
+                    //    console.log(moneyAdded)
+                        const line = document.getElementById('line');
+                        const bar = document.getElementById('bar');
+                        
+                        line.addEventListener('click',changeline);
+                        bar.addEventListener('click',changebar);
+                        
+
+                        
+                        const myChart= new Chart(document.getElementById("chartjs-7"), {
+                            type: "bar",
+                            data: {
+                                labels: ["Money Added", "Spending", "Savings", "Investing",],
+                                datasets: [{
+                                    label: "Rupees",
+                                    data: [moneyAdded, spending, savings, investings],
+                                    borderColor: "rgb(255, 99, 132)",
+                                    backgroundColor: "rgba(212, 33, 128, 0.2)",
+                                    borderWidth: 2
+                                }]
+                            },
+                            "options": {
+                                "scales": {
+                                    "yAxes": [{
+                                        "ticks": {
+                                            "beginAtZero": true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                        function changeline(){
+                            const updatetype = 'line';
+                            myChart.config.type=updatetype;
+                            myChart.update();
+                        };
+                        function changebar(){
+                            const updatetype = 'bar';
+                            myChart.config.type=updatetype;
+                            myChart.update(); 
+                        };
+                        
+                    </script>
+                    
+                </div>
+            </div>
+            <!--/Graph Card-->
+        </div>
+
+        
+
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+            <!--Graph Card-->
+            <div class="bg-white border-transparent rounded-lg shadow-xl">
+                <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                    <h2 class="font-bold uppercase text-gray-600">Monthly expenses</h2>
+                </div>
+                <div class="p-5">
+                    <canvas id="chartjs-1" class="chartjs" width=100 height=100></canvas>
+                    <script>
+                        var housing = <%= expenses.Housing %>
+                        var transportation = <%= expenses.Transportation %>
+                        var food = <%= expenses.Food %>
+                        var insurance = <%= expenses.Insurance %>
+                        var healthcare = <%= expenses.Healthcare %>
+                        var invest = <%= expenses.Invest %>
+                        var entertainment = <%= expenses.Entertainment %>
+                        new Chart(document.getElementById("chartjs-1"), {
+                            "type": "doughnut",
+                            "data": {
+                                "labels": ["Housing", "Transportation", "Food", "Personal Insurance", "Health care", "Entertainment","investment"],
+                                "datasets": [{
+                                    "label": "Percent",
+                                    "data": [ housing, transportation, food, insurance ,healthcare, entertainment, invest],
+                                    "fill": false,
+                                    // "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)"],
+                                    "backgroundColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)"],
+                                    "borderColor" : ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)"],
+                                    "borderWidth": 2
+                                }]
+                            }
+                            
+                        });
+                    </script>
+                </div>
+            </div>
+            <!--/Graph Card-->
+        </div>
+
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+            <!--Graph Card-->
+            <div class="bg-white border-transparent rounded-lg shadow-xl">
+                <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                    <h2 class="font-bold uppercase text-gray-600">EMI Calculator</h2>
+                </div>
+                <div class="calculator">
+
+            
+                    <!-- Calling Calculate function defined in app.js -->
+                    <p>Amount (₹) 	:
+                        <input id="amount" type="number" style="padding: 7px;
+                        width: 70%;
+                        margin-top: 7px; border: 2px solid black;">
+                    </p>
+            
+                    <p>Interest Rate :
+                        <input id="rate" type="number" style="padding: 7px;
+                        width: 70%;
+                        margin-top: 7px; border: 2px solid black;">
+                    </p>
+            
+                    <p>Months to Pay :
+                        <input id="months" type="number" style="padding: 7px;
+                        width: 70%;
+                        margin-top: 7px; border: 2px solid black;">
+                    </p>
+                    <p><Button class="mb-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10" onclick="Calculate()">Calculate</Button></p>
+            
+                    <h2 id="total" style="font-size: 28px;"></h2>
+                </div>
+            </div>
+            <!--/Graph Card-->
+        </div>
+
+            <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                <!--Table Card-->
+                <div class="bg-white border-transparent rounded-lg shadow-xl">
+                    <div class="flex justify-between bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                        <h2 class="font-bold uppercase text-gray-600">Monthly Deadlines</h2>
+                        <i id="deadline-edit" class="cursor-pointer	fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <div class="p-5">
+                        <table class="w-full p-5 text-gray-700">
+                            <thead>
+                            <tr>
+                                <th class="text-left text-blue-900">Category</th>
+                                <th class="text-left text-blue-900">Targeted Limit</th>
+                                <th class="text-left text-blue-900">Till Now</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>Entertainment</td>
+                                <td class="editContent">5000</td>
+                                <td class="till-now">20000</td>
+                                
+                                
+                            </tr>
+                            <tr>
+                                
+                                <td>Housing</td>
+                                <td class="editContent">5000</td>
+                                <td class="till-now">2000</td>
+                            </tr>
+                            <tr>
+                                <td>Food </td>
+                                <td class="editContent">5000</td>
+                                <td class="till-now">2000</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        
+
+                    </div>
+                </div>
+                <!--/table Card-->
+            </div>
+
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+            
+        </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+<% } %>
+
+
+<%- include("./components/footer") %>

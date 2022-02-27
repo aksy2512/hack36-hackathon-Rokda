@@ -1,0 +1,70 @@
+.profile-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10%;
+    color: rgb(12, 12, 61);
+}
+
+.profile-container  input{
+    color: black;
+}
+
+/* form{
+    background-color: rgb(226, 228, 200);
+    box-sizing: content-box;
+    border-radius: 40px;
+    padding: 40px 20px;
+} */
+
+
+/* Payment Gateway */
+@media(max-width:800px) {
+    .card {
+        width: 330px
+    }
+
+    .left_side {
+        display: none
+    }
+
+    .right_side {
+        width: 100%;
+        border-top-left-radius: 9px;
+        border-bottom-left-radius: 9px
+    }
+}
+
+.warning {
+    border: 1px solid red !important
+}
+
+.showHideBtn{
+    cursor: pointer;
+}
+
+
+
+th,td{
+    text-align: left;
+    padding: 8px;
+}
+td{
+    padding: 5px;
+}
+table, th, td{
+    border: 5px double black;
+}
+
+
+.calculator {
+    width: 400px;
+    height: 450px;
+    /* position: absolute;
+    left: 50%;
+    top: 50%; */
+    /* transform: translateX(-50%) translateY(-50%); */
+    padding: 20px 0px 0px 100px;
+    border-radius: 50px;
+    color: black;
+}
