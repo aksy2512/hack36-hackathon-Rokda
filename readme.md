@@ -34,9 +34,18 @@ The app keeps track of your payment history to help you be more accountable abou
    
 
 ***
+# TEAM
+
+Reducing my anxiety with LiAlH4
+
+1. Akshar Singh
+2. Amit Maindola
+3. Harshit Agarwar
+
 # Working
 1. First git clone the project
 2. npm install 
 3. npm run start
+4. Go to localhost:3000
 
 
