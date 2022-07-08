@@ -36,9 +36,9 @@ The app keeps track of your payment history to help you be more accountable abou
 ***
 
 # Working
-1. First git clone the project
-2. npm install 
-3. npm run start
-4. Go to localhost:3000
+1. First `git clone` the project
+2. `npm install` 
+3. `npm run start`
+4. Go to `localhost:3000`
 
 
