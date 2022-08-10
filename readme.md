@@ -14,8 +14,6 @@ The app keeps track of your payment history to help you be more accountable abou
 
 ![ss](11.png)
 ---
-![ss](11.png)
----
 ![ss](22.png)
 ---
 ![ss](33.png)
