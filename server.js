@@ -8,7 +8,7 @@ const coockieParser = require('cookie-parser')
 
 
 // Database connection
-const url = mongodb://127.0.0.1:27017/hack36';
+const url = 'mongodb://127.0.0.1:27017/hack36';
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 const connection = mongoose.connection;
 connection.once('open', ()=>{
