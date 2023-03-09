@@ -37,7 +37,7 @@ function Calculate() {
 
 	// Extracting value in the interest
 	// rate section in the variable
-	const rate = document.querySelector("#rate").value;
+	const rate = document.querySelector("#rate").value/1200;
 
 	// Extracting value in the months
 	// section in the variable
@@ -49,8 +49,14 @@ function Calculate() {
 	// Calculating total payment
 	const total = ((amount / months) + interest).toFixed(2);
 
+    const numerator = amount * rate * (1 + rate) ** months;
+    const denominator = (1 + rate) ** months - 1;
+    const emi = (numerator / denominator).toFixed(2);
+
+    // return emi;
+
 	document.querySelector("#total")
-		.innerHTML = "EMI : (₹)" + total;
+		.innerHTML = "EMI : (₹)" + emi;
 }
 
 

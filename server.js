@@ -8,11 +8,11 @@ const coockieParser = require('cookie-parser')
 
 
 // Database connection
-const url = 'mongodb://127.0.0.1:27017/hack36';
+const url = 'mongodb://localhost/hack36';
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 const connection = mongoose.connection;
 connection.once('open', ()=>{
-    console.log("Database connected...");
+    console.log("Data base connected...");
 })
 
 app.use(express.json())
@@ -133,7 +133,7 @@ app.post('/profile', async (req,res)=>{
     }
     else{
         //updating the profile
-        await User.updateOne({email : loggedInUser.email}, {fname : req.body.fname, lname : req.body.lname, city:req.body.city, State :req.body.state, zip: req.body.zip , Balance: loggedInUser.Balance,email: loggedInUser.email, password:loggedInUser.password});
+        await User.updateOne({email : loggedInUser.email}, {$set: {fname : req.body.fname, lname : req.body.lname, city:req.body.city, State :req.body.state, zip: req.body.zip , Balance: loggedInUser.Balance,email: loggedInUser.email, password:loggedInUser.password}});
         const query = User.findOne({ email: loggedInUser.email });
         query.exec(function (err, person) {
             loggedInUser=person;
@@ -141,6 +141,8 @@ app.post('/profile', async (req,res)=>{
         });
     }
 })
+
+
 // app.post("/addMoney", async (req, res)=>{
 //     if(!loggedInUser){
 //         return res.redirect("/login")
