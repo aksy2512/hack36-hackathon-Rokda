@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser');
 const ejs = require('ejs')
 const path = require('path')
 const mongoose = require('mongoose')
@@ -17,7 +18,7 @@ connection.once('open', ()=>{
 })
 
 app.use(express.json())
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:true}))
 
 // Session config
 app.use(session({
@@ -151,6 +152,14 @@ app.post("/signup", async(req, res)=>{
         email: req.body.email,
         password: req.body.password
     });
+
+    const requiredFields = ['fname', 'city', 'state', 'zip', 'email', 'password'];
+    for (let field of requiredFields) {
+        if (!req.body[field]) {
+            res.render('auth/signup', {error: 'Please fill out all required fields.'});
+            return;
+        }
+    }
       
     await user.save();
     await Expense.insertMany({email:req.body.email}).then((expense)=>{
@@ -174,6 +183,7 @@ app.post("/signup", async(req, res)=>{
 
     res.render('auth/login', {error:"Successfully signed up, login now"})
 })
+
 app.post("/login", async (req,res)=>{
     const query = User.findOne({ email: req.body.email });
     const query2 = Expense.findOne({email : req.body.email});

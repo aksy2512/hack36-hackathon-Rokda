@@ -1,72 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {background: linear-gradient(to left, #8942a8, #ba382f);}
-        </style>
-</head>
-<body style="display: flex; justify-content: center; padding-top: 5%;">
-    <div class="w-full max-w-xs">
-        <form action="/signup" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                  First Name
-                </label>
-                <input name = "fname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="First Name">
-              </div>
-              <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                  Last Name
-                </label>
-                <input name = "lname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Last Name">
-              </div>
-              <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                 City
-                </label>
-                <input name = "city" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="City">
-              </div>
 
-              <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                 State
-                </label>
-                <input name = "state" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="State">
-              </div>
-              <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                 ZIP Code
-                </label>
-                <input name = "zip" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="ZIP Code">
-              </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-              Email
-            </label>
-            <input name = "email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="email">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to left, #8942a8, #ba382f);
+    }
+  </style>
+</head>
+
+<body style="display: flex; justify-content: center; padding-top: 5%;">
+  <div class="w-full max-w-xs">
+    <form action="/signup" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4">
+        <% if (typeof error !== 'undefined') { %>
+          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mt-5" role="alert">
+            <p><%= error %></p>
           </div>
-          <div class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-              Password
-            </label>
-            <input name="password" class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
-            <p class="text-red-500 text-xs italic">Please choose a password.</p>
-          </div>
-          <div class="flex items-center justify-between">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-              Sign Up
-            </button>
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/login">
-            Log in instead
-            </a>
-          </div>
-        </form>
-        
-    </div>
+        <% } %>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          First Name<span class="text-red-500">*</span>
+        </label>
+        <input name="fname"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="First Name">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Last Name
+        </label>
+        <input name="lname"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="Last Name">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          City<span class="text-red-500">*</span>
+        </label>
+        <input name="city"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="City">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          State<span class="text-red-500">*</span>
+        </label>
+        <input name="state" id="state"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="State" list="states-list">
+        <datalist id="states-list">
+          <option value="Andhra Pradesh">
+          <option value="Arunachal Pradesh">
+          <option value="Assam">
+          <option value="Bihar">
+          <option value="Chhattisgarh">
+          <option value="Goa">
+          <option value="Gujarat">
+          <option value="Haryana">
+          <option value="Himachal Pradesh">
+          <option value="Jharkhand">
+          <option value="Karnataka">
+          <option value="Kerala">
+          <option value="Madhya Pradesh">
+          <option value="Maharashtra">
+          <option value="Manipur">
+          <option value="Meghalaya">
+          <option value="Mizoram">
+          <option value="Nagaland">
+          <option value="Odisha">
+          <option value="Punjab">
+          <option value="Rajasthan">
+          <option value="Sikkim">
+          <option value="Tamil Nadu">
+          <option value="Telangana">
+          <option value="Tripura">
+          <option value="Uttar Pradesh">
+          <option value="Uttarakhand">
+          <option value="West Bengal">
+        </datalist>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          ZIP Code<span class="text-red-500">*</span>
+        </label>
+        <input name="zip"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="ZIP Code">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Email<span class="text-red-500">*</span>
+        </label>
+        <input name="email"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="email">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password<span class="text-red-500">*</span>
+        </label>
+        <input name="password"
+          class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          id="password" type="password" placeholder="******************">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="button">
+          Sign Up
+        </button>
+        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/login">
+          Log in instead
+        </a>
+      </div>
+    </form>
+
+  </div>
 </body>
+
 </html>
