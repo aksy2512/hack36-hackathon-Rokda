@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const coockieParser = require('cookie-parser')
 const bcrypt = require('bcrypt');
-
+const nodemailer = require('nodemailer');
 
 // Database connection
 const url = 'mongodb://localhost/hack36';
@@ -31,6 +31,30 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 app.use(express.static(path.join(__dirname, '/public/')))
 
+// Using Nodemailer
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+    user: 'rokda.money.manager@gmail.com',
+    pass: 'jkoggojtylmljvvw'
+    }
+});
+
+// const mailOptions = {
+//     from: 'rokda.money.manager@gmail.com',
+//     to: '123aggarwalvision@gmail.com',
+//     subject: 'Subject of the email',
+//     text: 'This is the plain text body of the email'
+// };
+
+// transporter.sendMail(mailOptions, function(error, info){
+//     if (error) {
+//     console.log(error);
+//     } else {
+//     console.log('Email sent: ' + info.response);
+//     }
+// });
+  
 
 const personSchema = new mongoose.Schema({
     fname : { type: String, required: true},
@@ -126,14 +150,28 @@ app.post("/signup", async(req, res)=>{
         Balance: 0,
         email: req.body.email,
         password: req.body.password
-      });
+    });
       
     await user.save();
     await Expense.insertMany({email:req.body.email}).then((expense)=>{
         currentExpense=expense;
     })
 
-   
+    const mailOptions = {
+        from: 'rokda.money.manager@gmail.com',
+        to: req.body.email,
+        subject: 'New Account Sign Up',
+        text: 'Congratulation! Your account have recently been signed up on our Website Rokda.'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+        console.log(error);
+        } else {
+        console.log('Email sent: ' + info.response);
+        }
+    });
+
     res.render('auth/login', {error:"Successfully signed up, login now"})
 })
 app.post("/login", async (req,res)=>{
