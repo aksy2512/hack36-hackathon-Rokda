@@ -127,6 +127,9 @@ app.post("/login",(req,res)=>{
 
 
 app.post('/profile', async (req,res)=>{
+    if(!loggedInUser){
+        return res.redirect("/login")
+    }
     if(loggedInUser.password != req.body.password){
         res.render('profile', {user:loggedInUser, message:"Password did not matched"})
         // console.log(req.body);
