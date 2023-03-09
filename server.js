@@ -5,6 +5,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const coockieParser = require('cookie-parser')
+const bcrypt = require('bcrypt');
 
 
 // Database connection
@@ -39,8 +40,38 @@ const personSchema = new mongoose.Schema({
     zip : { type: String,  required: true },
     Balance : { type: Number, required: true , default : 0},
     email : { type: String, required: true, unique: true },
-    password : { type: String, required: true},
+    passwordHash: { type: String, required: true },
+    // password : { type: String, required: true},
 }) 
+
+// Virtual field to set password (unhashed)
+personSchema.virtual('password')
+    .set(function(value) {
+        this._password = value;
+        this.passwordHash = bcrypt.hashSync(value, 10);
+    })
+    .get(function () {
+        return this._password;
+    });
+
+// Middleware to hash password before saving
+personSchema.pre('save', async function(next) {
+    if (!this.isModified('password')) {
+      return next();
+    }
+  
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(this._password, salt);
+  
+    this.passwordHash = hash;
+    next();
+});
+  
+// Method to verify password
+personSchema.methods.verifyPassword = async function(password) {
+    return await bcrypt.compare(password, this.passwordHash);
+}
+
 const User = mongoose.model("User", personSchema);
 
 const transactionSchema = new mongoose.Schema({
@@ -85,7 +116,19 @@ var totalmoney;
 //################################  ROUTES ###############################################
 app.post("/signup", async(req, res)=>{
     console.log(req.body)
-    await User.insertMany({fname : req.body.fname, lname : req.body.lname, city:req.body.city,State :req.body.state, zip: req.body.zip , Balance: 0,email :req.body.email,password:req.body.password}).then((insertedData) => loggedInUser=insertedData);
+    // await User.insertMany({fname : req.body.fname, lname : req.body.lname, city:req.body.city,State :req.body.state, zip: req.body.zip , Balance: 0,email :req.body.email,password:req.body.password}).then((insertedData) => loggedInUser=insertedData);
+    const user = new User({
+        fname: req.body.fname,
+        lname: req.body.lname,
+        city: req.body.city,
+        State: req.body.state,
+        zip: req.body.zip,
+        Balance: 0,
+        email: req.body.email,
+        password: req.body.password
+      });
+      
+    await user.save();
     await Expense.insertMany({email:req.body.email}).then((expense)=>{
         currentExpense=expense;
     })
@@ -93,11 +136,11 @@ app.post("/signup", async(req, res)=>{
    
     res.render('auth/login', {error:"Successfully signed up, login now"})
 })
-app.post("/login",(req,res)=>{
+app.post("/login", async (req,res)=>{
     const query = User.findOne({ email: req.body.email });
     const query2 = Expense.findOne({email : req.body.email});
     // execute the query at a later time
-    query.exec(function (err, person) {
+    query.exec(async function (err, person) {
         if (err) {
             console.log("error1")
             return res.render('auth/login',{error : "Something Went Wrong!"})
@@ -105,7 +148,8 @@ app.post("/login",(req,res)=>{
         if(!person){
             return res.render('auth/login', {error : "User not found"})
         }
-        if(person.password!=req.body.password){
+        const isMatch = await person.verifyPassword(req.body.password);
+        if(!isMatch){
             return res.render('auth/login', {error : "Password not matched"})
         }
         loggedInUser=person;
@@ -127,7 +171,11 @@ app.post("/login",(req,res)=>{
 
 
 app.post('/profile', async (req,res)=>{
-    if(loggedInUser.password != req.body.password){
+    if(!loggedInUser){
+        return res.redirect("/login")
+    }
+    const isMatch = await user.verifyPassword(req.body.password);
+    if (!isMatch) {
         res.render('profile', {user:loggedInUser, message:"Password did not matched"})
         // console.log(req.body);
     }
